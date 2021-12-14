@@ -9,6 +9,22 @@
 </head>
 
 <body>
+    <main>
+        <h1>Juego Piedra, Papel y Tijera</h1>
+        <h2>Introduce aquí tu jugada</h2>
+        <form action="">
+            <select class="select js-selectPlay" name="select" id="select">
+                <option selected="true" value="" disabled>seleccione la jugada</option>
+                <option value="piedra">Piedra</option>
+                <option value="papel">Papel</option>
+                <option value="tijera">Tijera</option>
+            </select>
+            <input class="js-button" type="submit" value="Jugar">
+        </form>
+        <p class="js-resultado"></p>
+        <p class="js-puntuacionJugador">Jugador:</p>
+        <p class="js-puntuacionOrdenador">Ordenador:</p>
+    </main>
 
     <script src="./js/main.js"></script>
 </body>
