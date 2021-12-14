@@ -1,18 +1,19 @@
 'use strict';
 
 //Variables globales:
-const selectPlay = document.querySelector('.js-selectPlay');
+const userPlay = document.querySelector('.js-userPlay');
 const button = document.querySelector('.js-button')
 const result = document.querySelector('.js-resultado');
+
 
 //Funciones
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
 
 }
-function pickPlay() {
+function playerPick() {
     //Coger el value de la usuaria
-    const playerValue = selectPlay.value;
+    const playerValue = userPlay.value;
 }
 
 function renderWinner(winner) {
@@ -38,14 +39,18 @@ function getNumber() {
 }
 
 function getWinner() {
-
+    if ($playerValue === 'piedra') {
+        if (computerValue === 'piedra') {
+            document.querySelector('.result').innerHTML = '<h1>¡Empate!</h1>';
+        }
+    }
 }
 
 function handleClickPlay(event) {
 
     event.preventDefault();
     const computerValue = getNumber();
-    pickPlay();
+    playerPick();
     getWinner();
     /*console.log('Jugar')
     renderWinner();*/
