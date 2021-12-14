@@ -7,14 +7,12 @@ const result = document.querySelector('.js-resultado');
 
 //Funciones
 function getRandomNumber(max) {
-    console.log('crear número');
     return Math.ceil(Math.random() * max);
 
 }
 function pickPlay() {
     //Coger el value de la usuaria
     const playerValue = selectPlay.value;
-    console.log(playerValue);
 }
 
 function renderWinner(winner) {
@@ -23,26 +21,34 @@ function renderWinner(winner) {
 }
 
 
-function getWinner() {
+function getNumber() {
     //Generar número aleatorio
     const randomNum = getRandomNumber(10);
-    //Coger valor Usuaria
-    const playerValue = selectPlay.value;
-    console.log(playerValue);
+    let computerValue = ''
     //Comprobar si es < 3
     if (randomNum < 3) {
-        result.innerHTML = 'Gana el ordenador'
+        computerValue = 'tijera';
+
+    } else if (randomNum >= 6) {
+        computerValue = 'papel'
     } else {
-        result.innerHTML = 'Has ganado tu';
+        computerValue = 'piedra'
     }
+    return computerValue;
+}
+
+function getWinner() {
 
 }
 
 function handleClickPlay(event) {
-    console.log('Jugar')
+
     event.preventDefault();
+    const computerValue = getNumber();
+    pickPlay();
     getWinner();
-    renderWinner();
+    /*console.log('Jugar')
+    renderWinner();*/
 }
 
 //Código que se ejecuta
