@@ -1,60 +1,126 @@
 'use strict';
 
-//Variables globales:
-const userPlay = document.querySelector('.js-userPlay');
-const button = document.querySelector('.js-button')
-const result = document.querySelector('.js-resultado');
+//elementos de mi html
+const playBtn = document.querySelector('.play');
+const reloadBtn = document.querySelector('.reload');
+const moveInput = document.querySelector('.js_move');
+const resultInput = document.querySelector('.js_result');
+const computerInput = document.querySelector('.js_counter_lost');
+const playerInput = document.querySelector('.js_counter_win');
 
+//variables globales
+let playerScore = 0;
+let computerScore = 0;
+let moves = 0;
 
 //Funciones
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
-
-}
-function playerPick() {
-    //Coger el value de la usuaria
-    const playerValue = userPlay.value;
 }
 
-function renderWinner(winner) {
-    console.log('quien gana');
-    result.innerHTML = winner;
-}
-
-
-function getNumber() {
-    //Generar número aleatorio
-    const randomNum = getRandomNumber(10);
-    let computerValue = ''
-    //Comprobar si es < 3
-    if (randomNum < 3) {
-        computerValue = 'tijera';
-
-    } else if (randomNum >= 6) {
-        computerValue = 'papel'
+//generar la jugada aleatoria: ordenador
+function generarJugadaAleotoria() {
+    let moveComputer = "";
+    let number = getRandomNumber(9);
+    if (number <= 3) {
+        moveComputer = "piedra";
+    } else if (number <= 6) {
+        moveComputer = "papel"
     } else {
-        computerValue = 'piedra'
+        moveComputer = "tijera";
     }
-    return computerValue;
+    return moveComputer;
+
 }
 
-function getWinner() {
-    if ($playerValue === 'piedra') {
-        if (computerValue === 'piedra') {
-            document.querySelector('.result').innerHTML = '<h1>¡Empate!</h1>';
+//obtener la jugada de la usuaria
+function obtenerJugadaUsuaria() {
+    return moveInput.value;
+}
+
+//comparar jugadas y ver quien ha ganado
+function playGame() {
+
+    let moveComputer = generarJugadaAleotoria();
+    let movePlayer = obtenerJugadaUsuaria();
+    console.log(`jugada computadora ${moveComputer}`);
+    console.log(`jugada usuaria ${movePlayer}`);
+
+    moves++; //aumentar el numero de jugadas
+    console.log(moves);
+
+    if (moveComputer === movePlayer) {
+        //empate
+        resultInput.innerHTML = "Empate!"
+
+    } else if (movePlayer === "piedra") {
+        if (moveComputer === "papel") {
+            resultInput.innerHTML = "Has perdido!"
+            computerScore++;
+        } else if (moveComputer === "tijera") {
+            resultInput.innerHTML = "Has ganado!"
+            playerScore++;
+        }
+
+    } else if (movePlayer === "tijera") {
+        if (moveComputer === "piedra") {
+            resultInput.innerHTML = "Has perdido!"
+            computerScore++;
+        } else if (moveComputer === "papel") {
+            resultInput.innerHTML = "Has ganado!"
+            playerScore++;
+        }
+
+    } else if (movePlayer === "papel") {
+        if (moveComputer === "tijera") {
+            resultInput.innerHTML = "Has perdido!"
+            computerScore++;
+        } else if (moveComputer === "piedra") {
+            resultInput.innerHTML = "Has ganado!"
+            playerScore++;
         }
     }
+    computerInput.innerHTML = "Ordenador: " + computerScore;
+    playerInput.innerHTML = "Jugador:  " + playerScore;
 }
 
-function handleClickPlay(event) {
+//bonus: finalizar juego 
+function gameOver() {
+    if (moves === 10) {
+        if (playerScore > computerScore) {
+            resultInput.innerHTML = "Has ganado el juego"
+        } else if (playerScore < computerScore) {
+            resultInput.innerHTML = "Has perdido el juego"
+        } else {
+            resultInput.innerHTML = "Empate"
+        }
+        playBtn.classList.add("hidden");
+        reloadBtn.classList.remove("hidden");
+    }
 
-    event.preventDefault();
-    const computerValue = getNumber();
-    playerPick();
-    getWinner();
-    /*console.log('Jugar')
-    renderWinner();*/
+
 }
 
-//Código que se ejecuta
-button.addEventListener('click', handleClickPlay);
+//mostrar resultados: texto, puntuacion
+function hadleClickPlayGame(ev) {
+    ev.preventDefault();
+    playGame();
+    gameOver();
+}
+
+function handleClickReload(ev) {
+    ev.preventDefault();
+    playBtn.classList.remove("hidden");
+    reloadBtn.classList.add("hidden");
+    playerScore = 0;
+    computerScore = 0;
+    moves = 0;
+    resultInput.innerHTML = "Vamos a jugar"
+    computerInput.innerHTML = "Ordenador: " + computerScore;
+    playerInput.innerHTML = "Jugador:  " + playerScore;
+}
+
+
+//Eventos
+playBtn.addEventListener('click', hadleClickPlayGame);
+reloadBtn.addEventListener("click", handleClickReload)

@@ -1,0 +1,32 @@
+.main {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+  }
+  * {
+    margin: 10px;
+  }
+  input {
+    border: none;
+    font-size: 18px;
+  }
+  label {
+    font-size: 24px;
+    padding-top: 20px;
+  }
+  .form {
+    display: flex;
+    flex-direction: row;
+  }
+  .title {
+    padding: 15px;
+  }
+  select {
+    padding: 5px;
+  }
+  .hidden {
+    display: none;
+  }

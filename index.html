@@ -1,32 +1,44 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="utf-8" />
+    <title>Módulo 2: Ejercicio de evaluación intermedia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="http://beta.adalab.es/resources/stylesheets/all.css" />
+    <link rel="stylesheet" href="./css/main.css" />
 </head>
 
 <body>
-    <main>
-        <h1>Juego Piedra, Papel y Tijera</h1>
-        <h2>Introduce aquí tu jugada</h2>
-        <form action="">
-            <select class="select js-userPlay" name="select" id="select">
-                <option selected="true" value="" disabled>seleccione la jugada</option>
+    <main class="border--medium border--success main">
+        <h1 class="title">Juego Piedra, Papel y Tijera</h1>
+        <h3>Introduce aquí tu jugada:</h3>
+        <form class="form">
+            <select class="border--medium js_move" name="jugada" id="jugada">
+                <option value="select">Seleccione su jugada</option>
                 <option value="piedra">Piedra</option>
                 <option value="papel">Papel</option>
                 <option value="tijera">Tijera</option>
             </select>
-            <input class="js-button" type="submit" value="Jugar">
+            <button class="badge play">Jugar</button>
         </form>
-        <p class="js-resultado"></p>
-        <p class="js-puntuacionJugador">Jugador:</p>
-        <p class="js-puntuacionOrdenador">Ordenador:</p>
-    </main>
 
-    <script src="./js/main.js"></script>
+        <div class="mt-3s">
+            <h2 class="badge js_result">Vamos a Jugar!</h2>
+        </div>
+
+        <div class="">
+            <p class="js_counter_win input">Jugador: 0</p>
+        </div>
+        <div class="">
+            <p class="js_counter_lost input">Computadora: 0</p>
+        </div>
+        <!--Reload the game -->
+        <button class="badge reload hidden">Reiniciar Juego</button>
+    </main>
+    <script type="text/javascript" src="./js/main.js"></script>
 </body>
 
 </html>
