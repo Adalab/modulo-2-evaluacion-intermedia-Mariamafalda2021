@@ -1,6 +1,6 @@
 'use strict';
 
-//elementos de mi html
+//Traigo los elementos del HTML
 const playBtn = document.querySelector('.play');
 const reloadBtn = document.querySelector('.reload');
 const moveInput = document.querySelector('.js_move');
@@ -8,17 +8,17 @@ const resultInput = document.querySelector('.js_result');
 const computerInput = document.querySelector('.js_counter_lost');
 const playerInput = document.querySelector('.js_counter_win');
 
-//variables globales
+//Declaro las variables globales
 let playerScore = 0;
 let computerScore = 0;
 let moves = 0;
 
-//Funciones
+//Función para generar un número random
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
 }
 
-//generar la jugada aleatoria: ordenador
+//Función para generar la jugada aleatoria: ordenador
 function generarJugadaAleotoria() {
     let moveComputer = "";
     let number = getRandomNumber(9);
@@ -33,12 +33,12 @@ function generarJugadaAleotoria() {
 
 }
 
-//obtener la jugada de la usuaria
+//Guardar el input de la usuaria
 function obtenerJugadaUsuaria() {
     return moveInput.value;
 }
 
-//comparar jugadas y ver quien ha ganado
+//Comparar el input de la usuaria con la jugada del ordenador
 function playGame() {
 
     let moveComputer = generarJugadaAleotoria();
@@ -49,6 +49,7 @@ function playGame() {
     moves++; //aumentar el numero de jugadas
     console.log(moves);
 
+    //Vamos comparando una a una las posibles jugadas
     if (moveComputer === movePlayer) {
         //empate
         resultInput.innerHTML = "Empate!"
@@ -84,7 +85,7 @@ function playGame() {
     playerInput.innerHTML = "Jugador:  " + playerScore;
 }
 
-//bonus: finalizar juego 
+//Bonus explicado en clase
 function gameOver() {
     if (moves === 10) {
         if (playerScore > computerScore) {
